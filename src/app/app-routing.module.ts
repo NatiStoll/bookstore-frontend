@@ -5,17 +5,17 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 const routes: Routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },
   {
-    path: 'users',
-    loadChildren: () =>
-      import('./modules/users/users.module').then((m) => m.UsersModule),
-  },
-
-  {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
 
+  {
+    path: 'users',
+    loadChildren: () =>
+      import('./modules/users/users.module').then((m) => m.UsersModule),
+  },
+  
   {
     path: 'book',
     loadChildren: () =>

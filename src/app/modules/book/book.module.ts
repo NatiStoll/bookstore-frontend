@@ -7,5 +7,6 @@ import { BookRoutingModule } from './book-routing.module';
 @NgModule({
   declarations: [CreateBookComponent, ListBookComponent],
   imports: [CommonModule, BookRoutingModule],
+  exports: [CreateBookComponent, ListBookComponent]
 })
 export class BookModule {}

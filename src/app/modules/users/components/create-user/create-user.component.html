@@ -1,1 +1,40 @@
-<p>create-user works!</p>
+
+<div class="container my-4">
+    <h1 class="d-flex justify-content-center">{{ title }}</h1>
+    <form [formGroup]="userForm">
+      <fieldset>
+        <legend>Dados pessoais</legend>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Senha</mat-label>
+              <input matInput formControlName="password" />
+            </mat-form-field>
+          </div>
+        </div>
+      </fieldset>
+      <button mat-flat-button>Voltar</button>
+      <button
+        mat-flat-button
+        [disabled]="userForm.invalid"
+        color="primary"
+        cdkFocusInitial
+      >
+        Salvar
+      </button>
+    </form>
+  </div>
