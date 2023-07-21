@@ -1,1 +1,18 @@
-<p>list-book works!</p>
+<div *ngFor="let book of books">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ book.titulo }}</mat-card-title>
+      <!--  <mat-card-subtitle>{{ book.status }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <strong>Nome do Autor:</strong>
+        {{ book.nomeAutor }}
+      </p>
+      <p>
+       <strong>Categoria:</strong>
+       {{ book.categoria.nome }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
