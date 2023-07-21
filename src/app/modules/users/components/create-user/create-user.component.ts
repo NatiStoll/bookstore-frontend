@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from '../../service/users.service';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
+
 
 
 @Component({
@@ -16,6 +20,13 @@ export class CreateUserComponent implements OnInit {
   public title = "Create User"
 
   public userForm!: FormGroup;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private usersService: UsersService,
+    private snackbarService: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -34,5 +45,19 @@ export class CreateUserComponent implements OnInit {
       password: new FormControl(null, [Validators.required]),
     });
   }
+
+  public onSubmit(): void {
+    this.user = this.userForm.getRawValue();
+    console.log(this.user);
+    if (this.id) {
+      // this.update(user);
+    } else {
+      // this.save(user);
+    }
+  }
+
+public onCancel(): void {
+  this.router.navigate(['/']);
+}
 
 }

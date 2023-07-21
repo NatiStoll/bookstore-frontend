@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // import { ZipCodeMaskPipe } from './pipes/zip-code-mask.pipe';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -18,6 +20,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatSnackBarModule,
     MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatSelectModule,
   ],
   exports: [
     MatToolbarModule,
@@ -25,6 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    MatSelectModule,
+MatInputModule,
+],
 })
 export class MaterialModule {}

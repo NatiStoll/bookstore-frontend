@@ -20,7 +20,7 @@ import { BookModule } from './modules/book/book.module';
             MatButtonModule,
             BrowserAnimationsModule,
             UsersModule,
-             BookModule
+            BookModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline">
-              <mat-label>Nome</mat-label>
+              <mat-label>Nome Completo</mat-label>
               <input matInput formControlName="name" />
             </mat-form-field>
           </div>
@@ -27,13 +27,12 @@
           </div>
         </div>
       </fieldset>
-      <button mat-flat-button>Voltar</button>
+      <button mat-flat-button (click)="onCancel()">Voltar</button>
       <button
         mat-flat-button
         [disabled]="userForm.invalid"
         color="primary"
-        cdkFocusInitial
-      >
+        cdkFocusInitial (click)="onSubmit()">
         Salvar
       </button>
     </form>

@@ -1,1 +1,47 @@
-<p>create-book works!</p>
+<div class="container my-4">
+    <h1 class="d-flex justify-content-center">{{ title }}</h1>
+    <form [formGroup]="bookForm">
+      <fieldset>
+        <legend>Book data</legend>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Author</mat-label>
+              <input matInput formControlName="author" />
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Category</mat-label>
+              <input matInput formControlName="category" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Read status</mat-label>
+                <mat-select [(value)]="selectedStatus">
+                  <mat-option  [value]="option.value" *ngFor="let option of readStatus">{{ option.viewValue }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+          </div>
+        </div>
+      </fieldset>
+      <button mat-flat-button>Voltar</button>
+      <button
+        mat-flat-button
+        [disabled]="bookForm.invalid"
+        color="primary"
+        cdkFocusInitial>
+        Salvar
+      </button>
+    </form>
+  </div>
