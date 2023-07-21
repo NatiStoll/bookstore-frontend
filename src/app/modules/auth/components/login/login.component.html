@@ -1,6 +1,4 @@
-<div>
-
-</div>
+<img src="./assets/img/landing.jpeg" alt="landing.png">
 
 <div class="form-container h-100 bg-primary d-flex justify-content-center align-items-center">
   <!-- <div class="example-container"> -->
@@ -24,17 +22,18 @@
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'">
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
 
-       <div>
-        <button mat-raised-button (click)="login()">Sign In</button>
-    <button mat-raised-button (click)="register()">Register</button>
-  </div>
-  </form>
-      
+        <div>
+          <button mat-raised-button (click)="login()">Sign In</button>
+          <button mat-raised-button (click)="register()">Register</button>
+        </div>
+      </form>
+
 
     </mat-card-content>
   </mat-card>
