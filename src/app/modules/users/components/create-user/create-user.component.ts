@@ -26,7 +26,7 @@ export class CreateUserComponent implements OnInit {
     private route: ActivatedRoute,
     private usersService: UsersService,
     private snackbarService: SnackbarService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -54,10 +54,11 @@ export class CreateUserComponent implements OnInit {
     } else {
       // this.save(user);
     }
+    this.router.navigate(['/auth/login']);
   }
 
-public onCancel(): void {
-  this.router.navigate(['/']);
-}
+  public onCancel(): void {
+    this.router.navigate(['/auth/login']);
+  }
 
 }

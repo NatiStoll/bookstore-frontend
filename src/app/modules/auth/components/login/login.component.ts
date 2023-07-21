@@ -15,13 +15,13 @@ export class LoginComponent {
     private router: Router,
     private route: ActivatedRoute,
     private snackbarService: SnackbarService
-  ) {}
+  ) { }
 
-  login(){
-    this.router.navigate(['/book/list']);
+  login() {
+    this.router.navigate(['/book']);
   }
 
-  register(){
+  register() {
     this.router.navigate(['/users/create']);
   }
 }
