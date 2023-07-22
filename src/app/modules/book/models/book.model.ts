@@ -17,5 +17,12 @@ export interface Categoria{
   id: number;
   nome?: string;
   descricao?: string;
-
 }
+
+// export interface Book{
+//     id: number;
+//     titulo: string;
+//     nomeAutor: string;
+//     categoria: Categoria;
+//     status?: StatusBook;
+// }

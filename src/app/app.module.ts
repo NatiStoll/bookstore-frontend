@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersModule } from './modules/users/users.module';
 import { BookModule } from './modules/book/book.module';
+import { HttpClientModule } from '@angular/common/http';
 // import { HeaderComponent } from './shared/components/header/header.component';
 // import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
@@ -20,7 +21,8 @@ import { BookModule } from './modules/book/book.module';
             MatButtonModule,
             BrowserAnimationsModule,
             UsersModule,
-            BookModule
+            BookModule,
+            HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

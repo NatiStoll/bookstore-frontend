@@ -17,8 +17,8 @@ export class BookService {
     return this.http.post<Book>(`${this.apiURL}/livros?categoria=${book.categoria.id}`, book);
   }
 
-  public findAll(id_categoria: number): Observable<Partial<Book[]>> {
-    return this.http.get<Book[]>(`${this.apiURL}/livros?categoria=${id_categoria}`);
+  public findAll(): Observable<Partial<Book>[]> {
+    return this.http.get<Book[]>(`${this.apiURL}/livros`);
   }
 
   public findById(id: string): Observable<Book>{

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../service/book.service';
 import { Book } from '../../models/book.model';
 import { first } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-book',
@@ -9,12 +10,17 @@ import { first } from 'rxjs';
   styleUrls: ['./list-book.component.scss']
 })
 export class ListBookComponent implements OnInit {
-  public books!: Book[];
+  public books!: Partial<Book>[];
+  public id_categoria?: number;
+  public book!: Book;
 
-  constructor(private bookService: BookService){}
+  constructor(  private router: Router,
+    private route: ActivatedRoute,
+    private bookService: BookService){}
 
   ngOnInit(): void {
       this.getBooks();
+      
   }
 
   public getBooks() {
