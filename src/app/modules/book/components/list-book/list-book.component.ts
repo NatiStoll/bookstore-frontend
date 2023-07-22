@@ -3,6 +3,7 @@ import { BookService } from '../../service/book.service';
 import { Book } from '../../models/book.model';
 import { first } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 
 @Component({
   selector: 'app-list-book',
@@ -16,14 +17,15 @@ export class ListBookComponent implements OnInit {
 
   constructor(  private router: Router,
     private route: ActivatedRoute,
-    private bookService: BookService){}
+    private bookService: BookService,
+    private snackbarService: SnackbarService){}
 
   ngOnInit(): void {
       this.getBooks();
       
   }
 
-  public getBooks() {
+  public getBooks(): void  {
     this.bookService
       .findAll()
       .pipe(first())
@@ -32,8 +34,21 @@ export class ListBookComponent implements OnInit {
           this.books = response;
         },
         error: (err) => {
-          console.log("Deu erro getBooks");
-        }
+          this.snackbarService.openSnackBar(err.error.message);
+        },
       })
+  }
+
+  onDelete(id: number): void {
+    this.bookService.remove(id).pipe(
+      first())
+      .subscribe({
+        error: (err) => {
+          this.snackbarService.openSnackBar(err.error.message);
+        },
+        complete: () => {
+          this.getBooks();
+        },
+      });
   }
 }

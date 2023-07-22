@@ -1,7 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

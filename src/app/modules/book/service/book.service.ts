@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../models/book.model';
+import { Book} from '../models/book.model';
 import { GlobalConstants } from 'src/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,8 +13,8 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  public create(book: Book): Observable<Book> {
-    return this.http.post<Book>(`${this.apiURL}/livros?categoria=${book.categoria.id}`, book);
+  public create(book: Book, categoria_id: number): Observable<Book> {
+    return this.http.post<Book>(`${this.apiURL}/livros?id_categoria=${categoria_id}`, book);
   }
 
   public findAll(): Observable<Partial<Book>[]> {

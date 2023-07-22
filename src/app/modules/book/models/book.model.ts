@@ -19,10 +19,16 @@ export interface Categoria{
   descricao?: string;
 }
 
-// export interface Book{
+// export interface BookRequest{
 //     id: number;
 //     titulo: string;
 //     nomeAutor: string;
-//     categoria: Categoria;
+//     categoria: number;
 //     status?: StatusBook;
+// }
+
+// export interface CategoryNumber{
+//     id: number;
+//     category: string;
+   
 // }
