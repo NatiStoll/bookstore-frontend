@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Book,  StatusBook } from '../../models/book.model';
+import { Book,  BookRequest,  StatusBook } from '../../models/book.model';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BookService } from '../../service/book.service';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Categoria } from '../../models/book.model';
 
 
 interface StatusReadBook{
@@ -23,6 +24,8 @@ export class CreateBookComponent implements OnInit{
   public id?: number;
   public categoria_id?: number;
   public title = "Register Book"
+  public categorias?: Categoria[];
+  public bookReq?: BookRequest;
  
 
   public bookForm!: FormGroup;
@@ -35,6 +38,7 @@ export class CreateBookComponent implements OnInit{
 
  selectedStatus = this.readStatus[2].value;
 
+
  constructor(
   private router: Router,
   private route: ActivatedRoute,
@@ -46,7 +50,7 @@ export class CreateBookComponent implements OnInit{
   ngOnInit(): void {
     this.buildForm();
     this.id = this.route.snapshot.params['id'];
-  
+    this.getAllCategory();
     if (this.id) {
       this.title = 'Editar Usuário';
       console.log(this.id);
@@ -83,13 +87,8 @@ export class CreateBookComponent implements OnInit{
         Validators.required,
         Validators.pattern('^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){1,}$'),
       ]),
-      categoria: new FormGroup({
-          id: new FormControl(),
-          nome: new FormControl(),
-          descricao: new FormControl(),
-        }),
+      categoria_id:  new FormControl(),
       status: new FormControl(null)
-
   });
   }
 
@@ -98,14 +97,13 @@ export class CreateBookComponent implements OnInit{
   }
 
   onSubmit(){
-    const book: Book = this.bookForm.getRawValue();
-    const category: number = book.categoria.id;
+    const bookRequest: BookRequest = this.bookForm.getRawValue();
     if (this.id) {
-      this.update(book);
+      this.update(bookRequest);
     } else {
-      this.save(book, category);
+      this.save(bookRequest);
     }
-    console.log(book);
+    console.log(bookRequest);
   }
 
 
@@ -122,9 +120,9 @@ export class CreateBookComponent implements OnInit{
         },
       });
   }
-  public save(book: Book, category: number): void {
+  public save(book: BookRequest): void {
   this.bookService
-  .create(book, category)
+  .create(book, book.categoria_id)
   // .pipe(first())
   .subscribe({
     error: (err) => {
@@ -148,11 +146,27 @@ export class CreateBookComponent implements OnInit{
         },
         error: (err: HttpErrorResponse) => {
           this.snackbarService.openSnackBar(
-            err.error.message || 'Houve um erro. Por favor, tente novamente.'
+            err.error.message || 'Erro ao buscar livro por id. Por favor, tente novamente.'
           );
         },
       });
   }
+
+  public getAllCategory(){
+    this.bookService.findAllCategory()
+    .subscribe({
+      next: (response: Categoria[]) => {
+        this.categorias = response;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.snackbarService.openSnackBar(
+          err.error.message || 'Erro ao buscar categoria. Por favor, tente novamente.'
+        );
+      },
+    });
+}
+
+
 
 }
 

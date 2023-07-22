@@ -19,9 +19,17 @@
                     </mat-form-field>
                 </div>
 
-                <fieldset formGroupName="categoria">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Categorias</mat-label>
+                        <mat-select formControlName="categoria_id">
+                            <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+                                {{ cat.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 
-                        <div class="col-3">
+                        <!-- <div class="col-3">
                             <mat-form-field appearance="outline">
                                 <legend>nome categoria</legend>
                                 <mat-label></mat-label>
@@ -36,7 +44,7 @@
                             </mat-form-field>
                      
                     </div>
-                </fieldset>
+                </fieldset> -->
 
                 <div>
                     <mat-form-field appearance="outline">

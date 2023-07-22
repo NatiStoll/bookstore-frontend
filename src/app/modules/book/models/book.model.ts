@@ -2,7 +2,7 @@ export interface Book{
     id: number;
     titulo: string;
     nomeAutor: string;
-    categoria: Categoria;
+    // categoria: Categoria;
     status?: StatusBook;
 }
 export enum StatusBook{
@@ -19,13 +19,13 @@ export interface Categoria{
   descricao?: string;
 }
 
-// export interface BookRequest{
-//     id: number;
-//     titulo: string;
-//     nomeAutor: string;
-//     categoria: number;
-//     status?: StatusBook;
-// }
+export interface BookRequest{
+    id: number;
+    titulo: string;
+    nomeAutor: string;
+    categoria_id: number;
+    status?: StatusBook;
+}
 
 // export interface CategoryNumber{
 //     id: number;

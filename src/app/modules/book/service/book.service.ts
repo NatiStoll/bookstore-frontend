@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book} from '../models/book.model';
+import { Book, BookRequest, Categoria} from '../models/book.model';
 import { GlobalConstants } from 'src/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  public create(book: Book, categoria_id: number): Observable<Book> {
+  public create(book: BookRequest, categoria_id: number): Observable<Book> {
     return this.http.post<Book>(`${this.apiURL}/livros?id_categoria=${categoria_id}`, book);
   }
 
@@ -31,5 +31,8 @@ export class BookService {
 
   public remove(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiURL}/livros/${id}`);
+  }
+  public findAllCategory(): Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${this.apiURL}/categorias`)
   }
 }
