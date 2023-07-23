@@ -1,9 +1,10 @@
 export interface Book{
-    id: number;
-    titulo: string;
-    nomeAutor: string;
-    // categoria: Categoria;
-    status?: StatusBook;
+    id: string;
+    user_id: string;
+    category_id: string;
+    title: string;
+    author: string;
+    status: string;
 }
 export enum StatusBook{
     READ, READING, NOT_READ

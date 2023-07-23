@@ -39,7 +39,7 @@ export class ListBookComponent implements OnInit {
       })
   }
 
-  onDelete(id: number): void {
+  onDelete(id: string): void {
     this.bookService.remove(id).pipe(
       first())
       .subscribe({

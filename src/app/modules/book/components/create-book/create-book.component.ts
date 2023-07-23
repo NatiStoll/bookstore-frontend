@@ -21,11 +21,9 @@ export class CreateBookComponent implements OnInit{
   
   public books!: Book[];
   public book?: Book;
-  public id?: number;
-  public categoria_id?: number;
+  public id?: string;
   public title = "Register Book"
   public categorias?: Categoria[];
-  public bookReq?: BookRequest;
  
 
   public bookForm!: FormGroup;
@@ -65,7 +63,7 @@ export class CreateBookComponent implements OnInit{
     }
   }
 
-  private updateForm(id: number,
+  private updateForm(id: string,
     //  categoria_id: number
      ): void {
     this.bookForm.patchValue(this.book as Book);
@@ -97,13 +95,13 @@ export class CreateBookComponent implements OnInit{
   }
 
   onSubmit(){
-    const bookRequest: BookRequest = this.bookForm.getRawValue();
+    const book: Book = this.bookForm.getRawValue();
     if (this.id) {
-      this.update(bookRequest);
+      this.update(book);
     } else {
-      this.save(bookRequest);
+      this.save(book);
     }
-    console.log(bookRequest);
+    console.log(book);
   }
 
 
@@ -120,9 +118,9 @@ export class CreateBookComponent implements OnInit{
         },
       });
   }
-  public save(book: BookRequest): void {
+  public save(book: Book): void {
   this.bookService
-  .create(book, book.categoria_id)
+  .create(book)
   // .pipe(first())
   .subscribe({
     error: (err) => {

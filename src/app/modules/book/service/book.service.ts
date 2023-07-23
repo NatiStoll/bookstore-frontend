@@ -13,26 +13,29 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  public create(book: BookRequest, categoria_id: number): Observable<Book> {
-    return this.http.post<Book>(`${this.apiURL}/livros?id_categoria=${categoria_id}`, book);
+  public create(book: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.apiURL}/books`, book);
   }
 
   public findAll(): Observable<Partial<Book>[]> {
-    return this.http.get<Book[]>(`${this.apiURL}/livros`);
+    return this.http.get<Partial<Book>[]>(`${this.apiURL}/books`);
   }
 
   public findById(id: string): Observable<Book>{
-    return this.http.get<Book>(`${this.apiURL}/livros/${id}`);
+    return this.http.get<Book>(`${this.apiURL}/books/${id}`);
   }
 
   public update(book: Book): Observable<Book>{
-    return this.http.put<Book>(`${this.apiURL}/livros/${book.id}`, book)
+    return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book)
   }
 
-  public remove(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/livros/${id}`);
+  public remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiURL}/books/${id}`);
   }
   public findAllCategory(): Observable<Categoria[]>{
-    return this.http.get<Categoria[]>(`${this.apiURL}/categorias`)
+    return this.http.get<Categoria[]>(`${this.apiURL}/categories`)
+  }
+  public findCategorybyId(category_id: string): Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${this.apiURL}/categories/${category_id}`)
   }
 }
