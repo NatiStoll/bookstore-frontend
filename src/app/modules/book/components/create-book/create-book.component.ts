@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BookService } from '../../service/book.service';
 import { SnackbarService } from 'src/app/shared/service/snackbar.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Categoria } from '../../models/book.model';
+import { Category } from '../../models/book.model';
 
 
 interface StatusReadBook{
@@ -23,7 +23,7 @@ export class CreateBookComponent implements OnInit{
   public book?: Book;
   public id?: string;
   public title = "Register Book"
-  public categorias?: Categoria[];
+  public categories?: Category[];
  
 
   public bookForm!: FormGroup;
@@ -77,15 +77,15 @@ export class CreateBookComponent implements OnInit{
   public buildForm(): void {
     this.bookForm = new FormGroup({
       id: new FormControl(),
-      titulo: new FormControl(null, [
+      title: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){1,}$'),
       ]),
-      nomeAutor: new FormControl(null, [
+      author: new FormControl(null, [
         Validators.required,
         Validators.pattern('^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){1,}$'),
       ]),
-      categoria_id:  new FormControl(),
+      category_id:  new FormControl(),
       status: new FormControl(null)
   });
   }
@@ -153,8 +153,8 @@ export class CreateBookComponent implements OnInit{
   public getAllCategory(){
     this.bookService.findAllCategory()
     .subscribe({
-      next: (response: Categoria[]) => {
-        this.categorias = response;
+      next: (response: Category[]) => {
+        this.categories = response;
       },
       error: (err: HttpErrorResponse) => {
         this.snackbarService.openSnackBar(

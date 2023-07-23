@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book, BookRequest, Categoria } from '../models/book.model';
+import { Book, BookRequest, Category } from '../models/book.model';
 import { GlobalConstants } from 'src/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -29,17 +29,17 @@ export class BookService {
 
   public update(book: Book): Observable<Book> {
     const header = this.setHeaders();
-    return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book)
+    return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book,this.setHeaders());
   }
 
   public remove(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/books/${id}`);
+    return this.http.delete<void>(`${this.apiURL}/books/${id}`, this.setHeaders());
   }
-  public findAllCategory(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${this.apiURL}/categories`, this.setHeaders())
+  public findAllCategory(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiURL}/categories`, this.setHeaders())
   }
-  public findCategorybyId(category_id: string): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${this.apiURL}/categories/${category_id}`)
+  public findCategorybyId(category_id: string): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiURL}/categories/${category_id}`, this.setHeaders());
   }
 
   private setHeaders() {

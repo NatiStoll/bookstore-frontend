@@ -14,10 +14,10 @@ export interface StatusReadBook{
   viewValue: string;
 }
 
-export interface Categoria{
+export interface Category{
   id: number;
-  nome?: string;
-  descricao?: string;
+  name?: string;
+  description?: string;
 }
 
 export interface BookRequest{
