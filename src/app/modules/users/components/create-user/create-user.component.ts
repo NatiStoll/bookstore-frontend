@@ -47,18 +47,27 @@ export class CreateUserComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.user = this.userForm.getRawValue();
+    const user = this.userForm.getRawValue();
     console.log(this.user);
-    if (this.id) {
-      // this.update(user);
-    } else {
-      // this.save(user);
-    }
-    this.router.navigate(['/auth/login']);
+    this.save(user);
   }
 
   public onCancel(): void {
     this.router.navigate(['/auth/login']);
+  }
+
+  public save(user: User): void {
+    this.usersService
+      .create(user)
+      // .pipe(first())
+      .subscribe({
+        error: (err) => {
+          this.snackbarService.openSnackBar(err.error.message);
+        },
+        complete: () => {
+          this.router.navigate(['/auth/login']);
+        },
+      });
   }
 
 }
