@@ -19,14 +19,16 @@ export class BookService {
 
   public findAll(): Observable<Partial<Book>[]> {
     const header = this.setHeaders();
+    console.log(header);
     return this.http.get<Partial<Book>[]>(`${this.apiURL}/books`, header);
   }
 
   public findById(id: string): Observable<Book> {
-    return this.http.get<Book>(`${this.apiURL}/books/${id}`);
+    return this.http.get<Book>(`${this.apiURL}/books/${id}`, this.setHeaders());
   }
 
   public update(book: Book): Observable<Book> {
+    const header = this.setHeaders();
     return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book)
   }
 
@@ -34,14 +36,15 @@ export class BookService {
     return this.http.delete<void>(`${this.apiURL}/books/${id}`);
   }
   public findAllCategory(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${this.apiURL}/categories`)
+    return this.http.get<Categoria[]>(`${this.apiURL}/categories`, this.setHeaders())
   }
   public findCategorybyId(category_id: string): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.apiURL}/categories/${category_id}`)
   }
 
   private setHeaders() {
-    const token = localStorage.getItem(GlobalConstants.USER_TOKEN);
+    let token = localStorage.getItem(GlobalConstants.USER_TOKEN) as string;
+    token = token?.replaceAll('"','')
     return { headers: { Authorization: `Bearer ${token}`}};
   }
 }

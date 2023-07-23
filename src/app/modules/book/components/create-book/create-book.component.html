@@ -7,7 +7,7 @@
                 <div class="col-3">
                     <mat-form-field appearance="outline">
                         <mat-label>Title</mat-label>
-                        <input matInput formControlName="titulo" />
+                        <input matInput formControlName="title" />
                     </mat-form-field>
                 </div>
             </div>
@@ -15,20 +15,20 @@
                 <div class="col-3">
                     <mat-form-field appearance="outline">
                         <mat-label>Author</mat-label>
-                        <input matInput formControlName="nomeAutor" />
+                        <input matInput formControlName="author" />
                     </mat-form-field>
                 </div>
 
 
                     <mat-form-field appearance="outline">
                         <mat-label>Categorias</mat-label>
-                        <mat-select formControlName="categoria_id">
+                        <mat-select formControlName="category_id">
                             <mat-option *ngFor="let cat of categorias" [value]="cat.id">
                                 {{ cat.nome }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                
+
                         <!-- <div class="col-3">
                             <mat-form-field appearance="outline">
                                 <legend>nome categoria</legend>
@@ -42,7 +42,7 @@
                                 <mat-label></mat-label>
                                 <input matInput formControlName="descricao" />
                             </mat-form-field>
-                     
+
                     </div>
                 </fieldset> -->
 
@@ -58,8 +58,8 @@
                 </div>
             </div>
         </fieldset>
-       
-       
+
+
 
         <button mat-flat-button (click)="onCancel()">Return</button>
         <button mat-flat-button [disabled]="bookForm.invalid" color="primary" cdkFocusInitial (click)="onSubmit()">

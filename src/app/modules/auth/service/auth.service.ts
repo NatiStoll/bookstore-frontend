@@ -14,6 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public login(credentials: LoginCredentials){
+
     return this.http.post<LoginResponse>(`${this.apiURL}/sessions`, credentials);
   }
 }
