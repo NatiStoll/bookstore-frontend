@@ -7,7 +7,7 @@
                 <div class="col-3">
                     <mat-form-field appearance="outline">
                         <mat-label>Title</mat-label>
-                        <input matInput formControlName="title" />
+                        <input matInput name="title" formControlName="title" />
                     </mat-form-field>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col-3">
                     <mat-form-field appearance="outline">
                         <mat-label>Author</mat-label>
-                        <input matInput formControlName="author" />
+                        <input matInput name="author" formControlName="author" />
                     </mat-form-field>
                 </div>
 
@@ -23,8 +23,8 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Categorias</mat-label>
                         <mat-select formControlName="category_id">
-                            <mat-option *ngFor="let cat of categorias" [value]="cat.id">
-                                {{ cat.nome }}
+                            <mat-option *ngFor="let category of categorias" [value]="category.id" >
+                                {{ category.nome }}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>

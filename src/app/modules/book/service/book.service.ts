@@ -14,12 +14,11 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   public create(book: Book): Observable<Book> {
-    return this.http.post<Book>(`${this.apiURL}/books`, book);
+    return this.http.post<Book>(`${this.apiURL}/books`, book, this.setHeaders());
   }
 
   public findAll(): Observable<Partial<Book>[]> {
     const header = this.setHeaders();
-    console.log(header);
     return this.http.get<Partial<Book>[]>(`${this.apiURL}/books`, header);
   }
 
@@ -28,12 +27,12 @@ export class BookService {
   }
 
   public update(book: Book): Observable<Book> {
-    const header = this.setHeaders();
-    return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book)
+    
+    return this.http.put<Book>(`${this.apiURL}/books/${book.id}`, book, this.setHeaders())
   }
 
   public remove(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/books/${id}`);
+    return this.http.delete<void>(`${this.apiURL}/books/${id}`, this.setHeaders());
   }
   public findAllCategory(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.apiURL}/categories`, this.setHeaders())

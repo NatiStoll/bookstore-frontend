@@ -7,7 +7,9 @@ export interface Book{
     status: string;
 }
 export enum StatusBook{
-    READ, READING, NOT_READ
+    READ = "Read",
+    READING = "Reading",
+    NOT_READ = "Not Read"
 }
 export interface StatusReadBook{
   value: string;
