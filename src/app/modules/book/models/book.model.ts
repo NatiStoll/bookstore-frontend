@@ -17,21 +17,10 @@ export interface StatusReadBook{
 }
 
 export interface Category{
-  id: number;
-  name?: string;
-  description?: string;
+  id: string;
+  name: string;
+  description: string;
 }
 
-export interface BookRequest{
-    id: number;
-    titulo: string;
-    nomeAutor: string;
-    categoria_id: number;
-    status?: StatusBook;
-}
 
-// export interface CategoryNumber{
-//     id: number;
-//     category: string;
-   
-// }
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book, BookRequest, Category } from '../models/book.model';
+import { Book, Category } from '../models/book.model';
 import { GlobalConstants } from 'src/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -17,9 +17,9 @@ export class BookService {
     return this.http.post<Book>(`${this.apiURL}/books`, book, this.setHeaders());
   }
 
-  public findAll(): Observable<Partial<Book>[]> {
+  public findAll(): Observable<Book[]> {
     const header = this.setHeaders();
-    return this.http.get<Partial<Book>[]>(`${this.apiURL}/books`, header);
+    return this.http.get<Book[]>(`${this.apiURL}/books`, header);
   }
 
   public findById(id: string): Observable<Book> {
@@ -37,8 +37,8 @@ export class BookService {
   public findAllCategory(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiURL}/categories`, this.setHeaders())
   }
-  public findCategorybyId(category_id: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiURL}/categories/${category_id}`, this.setHeaders());
+  public findCategorybyId(category_id: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiURL}/categories/${category_id}`, this.setHeaders());
   }
 
   private setHeaders() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Book,  BookRequest,  StatusBook } from '../../models/book.model';
+import { Book, StatusBook } from '../../models/book.model';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BookService } from '../../service/book.service';
@@ -22,7 +22,7 @@ export class CreateBookComponent implements OnInit{
   public books!: Book[];
   public book?: Book;
   public id?: string;
-  public title = "Register Book"
+  public title = "Register Book"; 
   public categories?: Category[];
  
 
@@ -50,39 +50,26 @@ export class CreateBookComponent implements OnInit{
     this.id = this.route.snapshot.params['id'];
     this.getAllCategory();
     console.log("Categorias?")
-    console.log(this.categorias)
+    console.log(this.categories)
     if (this.id) {
-      this.title = 'Editar Livro';
+      this.title ="Edit Book";
       console.log(this.id);
-      // if(this.book){
-
-      //   this.categoria_id = this.book.categoria.id;
-      this.updateForm(
-        this.id,
-        // this.categorias
-      );
-      // }
+      this.updateForm(this.id);
       this.getBookById(String(this.id));
     }
   }
 
   private updateForm(id: string,
-    //  categoria_id: number
+
      ): void {
     this.bookForm.patchValue(this.book as Book);
-    this.bookForm.patchValue({ id:id,
-      // categoria: { id: categoria_id } 
-   });
-  
-
-
+    this.bookForm.patchValue({ id:id });
   }
   public buildForm(): void {
     this.bookForm = new FormGroup({
       id: new FormControl(),
       title: new FormControl(null, [
-        Validators.required,
-        Validators.pattern('^[a-zA-ZÀ-ÿ]{2,}(?: [a-zA-ZÀ-ÿ]+){1,}$'),
+        Validators.required
       ]),
       author: new FormControl(null, [
         Validators.required,
@@ -111,7 +98,6 @@ export class CreateBookComponent implements OnInit{
   public update(book: Book): void {
     this.bookService
       .update(book)
-      // .pipe(first())
       .subscribe({
         error: (err) => {
           this.snackbarService.openSnackBar(err.error.message);
@@ -124,7 +110,6 @@ export class CreateBookComponent implements OnInit{
   public save(book: Book): void {
   this.bookService
   .create(book)
-  // .pipe(first())
   .subscribe({
     error: (err) => {
       this.snackbarService.openSnackBar(err.error.message);
@@ -141,9 +126,7 @@ export class CreateBookComponent implements OnInit{
       .subscribe({
         next: (response: Book) => {
           this.book = response;
-          this.updateForm(this.book.id
-            // , this.book.categoria.id
-            );
+          this.updateForm(this.book.id);
         },
         error: (err: HttpErrorResponse) => {
           this.snackbarService.openSnackBar(
