@@ -29,9 +29,9 @@ export class CreateBookComponent implements OnInit{
   public bookForm!: FormGroup;
 
   readStatus: StatusReadBook[] = [
-    {value: StatusBook.READ, viewValue: 'Read'},
-    {value: StatusBook.NOT_READ, viewValue: 'Reading'},
-    {value:StatusBook.READING, viewValue: 'Not Read'},
+    {value: StatusBook.READ, viewValue: StatusBook.READ},
+    {value: StatusBook.NOT_READ, viewValue: StatusBook.READING},
+    {value:StatusBook.READING, viewValue: StatusBook.NOT_READ},
  ];
 
  selectedStatus = this.readStatus[2].value;
@@ -49,15 +49,18 @@ export class CreateBookComponent implements OnInit{
     this.buildForm();
     this.id = this.route.snapshot.params['id'];
     this.getAllCategory();
+    console.log("Categorias?")
+    console.log(this.categorias)
     if (this.id) {
-      this.title = 'Editar Usuário';
+      this.title = 'Editar Livro';
       console.log(this.id);
       // if(this.book){
 
       //   this.categoria_id = this.book.categoria.id;
-      this.updateForm(this.id,
-        //  this.categoria_id
-         );
+      this.updateForm(
+        this.id,
+        // this.categorias
+      );
       // }
       this.getBookById(String(this.id));
     }
@@ -161,6 +164,9 @@ export class CreateBookComponent implements OnInit{
           err.error.message || 'Erro ao buscar categoria. Por favor, tente novamente.'
         );
       },
+      complete: () => {
+        console.log("Categorias ok")
+      }
     });
 }
 
