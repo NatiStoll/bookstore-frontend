@@ -26,11 +26,11 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
             HttpClientModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: LoadingInterceptor,

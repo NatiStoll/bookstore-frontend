@@ -30,12 +30,12 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
-    let token = localStorage.getItem(GlobalConstants.USER_TOKEN);
-    token = token!.replaceAll('"','')
+    const token = localStorage.getItem(GlobalConstants.USER_TOKEN)?.replaceAll('"', '');
+   
 
     const modifiedRequest = request.clone({
       setHeaders: {
-        Authorization: this.setHeaders(),
+        Authorization: `Bearer ${token}`,
       },
     });
 
