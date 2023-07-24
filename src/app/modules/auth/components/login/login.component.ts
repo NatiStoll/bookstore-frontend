@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { LoginCredentials } from '../../models/login-credentials.model';
 import { first } from 'rxjs';
-import { GlobalConstants } from 'src/commom/global-constants';
+import { GlobalConstants } from 'src/app/commom/global-constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

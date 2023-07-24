@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Book, Category } from '../models/book.model';
-import { GlobalConstants } from 'src/commom/global-constants';
+import { GlobalConstants } from 'src/app/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -18,8 +18,9 @@ export class BookService {
   }
 
   public findAll(): Observable<Book[]> {
-    const header = this.setHeaders();
-    return this.http.get<Book[]>(`${this.apiURL}/books`, header);
+    return this.http.get<Book[]>(`${this.apiURL}/books`,
+      this.setHeaders()
+      );
   }
 
   public findById(id: string): Observable<Book> {

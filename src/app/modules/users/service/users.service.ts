@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { GlobalConstants } from 'src/commom/global-constants';
+import { GlobalConstants } from 'src/app/commom/global-constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
