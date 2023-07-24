@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListUserComponent } from './components/list-user/list-user.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: CreateUserComponent,
+    canActivate: [AuthGuard]
   },
 ];
 

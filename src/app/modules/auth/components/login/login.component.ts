@@ -14,6 +14,7 @@ export class LoginComponent {
   hide = true;
   public email?: string;
   public password?: string;
+  public user?: string;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -33,6 +34,7 @@ export class LoginComponent {
         next: response => {
           localStorage.setItem(GlobalConstants.USER, JSON.stringify(response.user));
           localStorage.setItem(GlobalConstants.USER_TOKEN, JSON.stringify(response.token));
+          this.user = response.user.name;
         },
         error: err => {
           console.log(err);
